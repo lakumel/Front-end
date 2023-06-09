@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.background{
+            width: 200px;
+            background: url(img/sky.jpg); /*repeat:그림을 반복해라 / div 박스내에 배경 이미지 등록*/
+            border: 1px solid black;
+
+            margin:auto;
+        }
+
+        div.box{
+            margin: 30px;
+            background-color: white;
+            /* padding: 30px; */
+
+            opacity: 0.5;   /*투명도*/
+
+        }
+        .box p{
+            margin: 5%;
+            font-weight: bold;
+            color: black;
+            text-align: center;
+
+            opacity: 1;
+        }
+    </style>
+
+</head>
+<body>
+    <h3>opacity를 사용해서 배경이미지를 보이도록 처리</h3>
+    <hr>
+
+    <div class="background">
+        <div class="box"><p>HTML 5 웹프로그래밍</p> </div>
+
+    </div>
+
+</body>
+</html>
