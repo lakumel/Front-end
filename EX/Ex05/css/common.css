@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+body{
+    font-family: "맑은 고딕", "돋움";       /*글꼴 이름*/
+    font-size: 12px;        /*폰트 크기*/
+    color: #444444;
+}
+
+ul{ /*ul: 아이템의 순서가 중요하지 않은 목록*/
+    list-style-type: none;
+}
+.clear{
+    clear: both;
+}
+#wrap{
+    width: 970px;
+    margin: 0 auto;
+}
