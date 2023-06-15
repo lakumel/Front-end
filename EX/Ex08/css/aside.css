@@ -1,0 +1,29 @@
+aside#left{
+    width: 215px;
+    float: left;
+    margin-top: 15px;
+    font-weight: bold;
+}
+#left #cat_title{
+    padding: 12px;
+    background-color: #96c11f;
+    color: ffffff;
+    text-align: center;
+}
+#left li{
+    color: #666666;
+    padding: 7px 0 7px 30px;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+}
+#left #customer{
+    width: 213px;
+    height: 100px;
+    margin-top: 20px;
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+}
+#left #customer img{
+    margin: 5px 0 0 5px;
+}

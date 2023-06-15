@@ -1,0 +1,150 @@
+a {
+    color: white;
+    text-decoration: none;
+}
+
+/*헤더*/
+header{
+    height: 128px;
+    /* position: relative; */
+}
+
+#top{
+    width: 990px;
+    margin: 0 auto;
+    /* border: 1px solid gray; */
+}
+#logo{
+    /* position: absolute; */
+    /* top: 10px; */
+    /* left: 20px; */
+    float: left;
+    margin: 30px 0 0 0;
+}
+/* #logo{
+    position: absolute;
+    top: 10px;
+    left: 20px;
+} */
+/* #top_menu{
+    position: absolute;
+    top: 10px;
+    left: 770px;
+} */
+/*검색*/
+#search{
+    float: left;
+    font-family: "돋움";
+    font-size: 12px;
+    color: green;
+    margin: 40px 0 0 150px;
+    /* border: 1px solid red; */
+}
+#search #search_title{
+    float: left;
+    margin-top: 6px;
+}
+#search #search_form{
+    float: left;
+}
+#search #search_form input{
+    width: 80px;
+    height: 16px;
+    border: 0; /*...? 왜 넣는거지?*/
+    background-color: white;
+    /* border-radius: 1px solid green; */
+    border-bottom: 1px solid white;
+    margin-left: 5px;
+}
+#search #search_button{
+    float: left;
+    margin: 3px 0 0 3px;
+}
+
+/*top_menu*/
+
+#top_menu{
+    float: right;
+    margin-top: 45px;
+    /* border: 1px solid violet;  */
+}
+/* header #top_menu a:link #top_menu a:visited #top_menu a:hover #top_menu a:active{
+    font-size: 11px;
+    color: black;
+    인식안됨.....
+} */
+#top_menu a:link{
+    font-size: 11px;
+    color: black;
+}
+#top_menu a:visited{
+    font-size: 11px;
+    color: black;
+}
+#top_menu a:hover{
+    font-size: 11px;
+    color: black;
+}
+#top_menu a:active{
+    font-size: 11px;
+    color: black;
+}
+#top_menu li.green a:link{
+    color: #96c11f;
+}
+#top_menu li.green a:visited{
+    color: #96c11f;
+}
+#top_menu li.green a:hover{
+    color: #96c11f;
+}
+#top_menu li.green a:active{
+    color:#96c11f;
+}
+#top_menu li{
+    display: inline;
+    margin-left:10px ;
+}
+
+/*메인 메뉴 항목*/
+#main_menu{
+    /* width: 757px; */
+    height: 38px;
+    margin-top: 15px; /*위에서 밀어냄*/
+    background-color: gray;
+    /* border: 1px solid; */
+    /* background-image: url("../img/main_menu_bg.png"); */
+    /* background-repeat: no-repeat; */
+    /* position: absolute; */
+    /* top: 40px; */
+    /* left: 210px; */
+}
+#main_menu ul{
+    width: 990px;
+    margin: auto;
+    /* border: 1px solid black; */
+    padding-top: 12px;
+    text-align: center;
+}
+#main_menu li{
+    /* width:1000px;  */
+    display: inline;
+    margin: 0 57px;
+    /* font-size: 12px; */
+}
+#main_menu a:link{
+    /* text-decoration: none; */
+    color: #ffffff;
+}
+#main_menu a:hover{
+    /* text-decoration: none; */
+    color: white;
+}
+#main_menu a:visited{
+    /* text-decoration: none; */
+    color: white;
+}
+#main_menu a:active{
+    /* text-decoration: none; */
+    color: white;
+}

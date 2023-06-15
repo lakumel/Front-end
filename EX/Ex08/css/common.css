@@ -1,0 +1,27 @@
+/*전체영역*/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+body{
+    font-family: "맑은 고딕", "돋움"; /*글꼴과 이름*/
+    font-size: 12px; /*크기 12pt로 지정*/
+    color: black;   /*글자색*/
+    background-color: #f2f0f0; /*배경색*/
+}
+ul{ /*순번 상관없이 중요하지 않은 목록 리스트 형태로 출력*/
+    list-style-type: none;      
+}
+/* a:link, a:visited, a:hover, a:active{
+    text-decoration: none;
+    color: #444444;
+} */
+.clear{
+    clear: both;
+}
+/* #wrap{
+    width: 970px;
+    margin: 0 auto;
+} */
