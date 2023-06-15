@@ -6,7 +6,7 @@
     /* float: 750px; */
 }
 
-#cat1 {
+#sub1 {
     width: 215px;
     float: left;
     margin-top: 15px;
@@ -15,43 +15,43 @@
     /*글자 굵기:굵은 굵기*/
 }
 
-#cat1 #cat_title {
+#sub1 #sub_title {
     padding: 12px;
     background-color: green;
     color: white;
     text-align: center;
 }
 
-#cat1 li {
+#sub1 li {
     color: #666666;
     padding: 7px 0 7px 30px;
     border-bottom: 1px solid #cccccc;
 }
 
-#cat2 {
+#sub2 {
     float: left;
     margin-top: 15px;
 }
 
-#cat3 {
+#sub3 {
     width: 236px;
     float: left;
     margin-top: 15px;
 }
 
-#cat3 #latest_notice {
+#sub3 #latest_notice {
     width: 239px;
     height: 161px;
     background-image: url(../img/latest_notice.gif);
     background-repeat: no-repeat;
 }
 
-#cat3 #latest_notice ul {
+#sub3 #latest_notice ul {
     padding: 42px 0 0 30px;
     list-style-image: url(../img/blue_dot.gif);
 }
 
-#cat3 #week_event {
+#sub3 #week_event {
     width: 239px;
     height: 191px;
     margin-top: 11px;
@@ -59,7 +59,7 @@
     background-repeat: no-repeat;
 }
 
-#cat3 #week_event img {
+#sub3 #week_event img {
     margin: 58px 0 0 22px;
 }
 
