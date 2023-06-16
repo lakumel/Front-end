@@ -1,0 +1,67 @@
+1.방화벽 오픈 :  AWS 방화벽 오픈 
+2.웹 서버 설치 : nginx  <==TCP 80 <http>
+   sudo apt update
+   sudo apt install nginx
+   
+   sudo systemctl status nginx    <== 서비스 상태 확인
+  	  sudo systemctl start nginx
+	  sudo systemctl stop nginx
+	  sudo systemctl restart nginx
+	  sudo systemctl enable nginx	<==부팅시 자동으로 서비스 시작
+
+  nginx 웹서버의 홈 폴더 위치 : 개발된 소스를 업로드 할 위치(index.html)
+	/var /www/html	   
+
+  -- 현재 로그온한 계정(ubuntu)이 html 폴더에 개발된 파일을 업로드 할 수 있도록 권환을 부여 
+	cd /var/www
+	ls -l	
+	sudo chown ubuntu.root html
+
+DNS(Domain Name System) : 영문으로 된 도메인 이름을 IP Address로 변환 시켜 주는 서버
+	  www.google.com	===============> IP Address
+			                DNS Server (114교환원, 네비게이션과 같다.)
+	  www.naver.com
+	  === ==========
+	HostName+Domain Name : FQDN(전체 컴퓨터이름)
+
+	-- 도메인을 전세계적으로 관리 : 
+			www.internic.org ==> Registrars(공인된 도메인 등록 업체)
+  --AWS Route53(비용청구) : 신청한 도메인을 ip로 변환시켜주는 DNS server <====PaaS Service
+
+		- 연동 설명
+		www.gkn.kr <========> 54.180.201.96
+============PaaS====(Route 53)=============
+자신의 도메인을 사용해서 작동 하기
+1.도메인 등록 업체에서 원하는 도메인을 구매 : com, kr, co.kr(1년에 2만원 정도)
+2.AWS route 53서비스에서 Zone(호스팅 영역) ==>신청한 도메인을 등록 ===>AWS DNS 위치를 알 수 있다.
+3.도메인 등록 업체 사이트에서 해당 도메인의 DNS 서버를 지정(Route 53)
+4.Route 53 A 레코드 생성
+	www 	gkn.kr 	A			54.180.201.96
+		  	gkn.kr 	A			54.180.201.96
+============================================
+호스팅 영역(zone):DNS DataBase , 신청한 도메인 이름으로 만들어짐
+	--Recode(서비스를 하는 리소스)
+		NS : 신청한 도메인을 IP Address로 변환하는 DNS Server
+			<======도메인을 신청한 곳에서 네임서버 부분에 등록
+		SOA : 권한의 시작, 
+
+		A   : 호스트 이름 ======>IP Address로 변환하는 레코드
+		PTR : IP ======> 호스트 이름을 알려주는 레코드
+		CNAME: 별칭이름 =======>호스팅 이름
+		MX 	: 메일 서버를 알려주는 레코드
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
