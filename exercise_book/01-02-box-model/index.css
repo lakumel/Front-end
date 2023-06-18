@@ -1,0 +1,19 @@
+/*.box1{
+    background-color: gray;
+    width: 400px; /*  /*가로*/
+    /* height: 300px;  세로/높이 */
+    /* border: 1px solid red; */
+/* 
+  padding: 50px;
+    margin: 50px;
+} */
+div{
+  width: 200px;
+  height: 200px;
+  background-color: lightgray;
+}
+
+.box1{
+  padding: 50px;
+  border: 1px solid blue;
+}
