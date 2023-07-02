@@ -1,0 +1,46 @@
+section#main{
+    width: 1300px;
+    margin: auto;
+}
+
+section#banner1{
+    float: inline;
+    margin-top: 15px;
+}
+
+#banner2{
+    width: 1300px;
+    height: 400px;
+    border: 1px solid black;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 20px;
+}
+#banner2 h2{
+    margin-top: 20px;
+
+}
+#banner2 .item{
+    float: left;
+    text-align: center;
+    margin: 20px 0 0 100px;
+}
+
+/* 이달의 추천 도서 */
+section#new{
+    height: 800px;
+    margin-top: 50px;
+    /* border-top: 1px solid #007f96; */
+    font-size: 20px;
+}
+section#new h3{
+    margin: 20px 0 30px 50px;
+}
+section#new h3 span{
+
+}
+section#new .item{
+    float: left;
+    text-align: center;
+    margin: 0 0 0 100px;
+}

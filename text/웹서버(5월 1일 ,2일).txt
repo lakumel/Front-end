@@ -1,0 +1,190 @@
+
+Web server : http 프로토콜을 사용해서 서비스, TCP 80
+
+   - Apache Web server : <== Linux		<--50% 이상이 사용을 하고 있다.
+   - Nginx Web Server   : <== Linux   , 성능, 보안, 쉽게 셋팅
+
+   - IIS (internet information Service) : <==Windows Server 2016, 2019, 2022 <==service
+				<== windows 10, 11 <==개발, 테스트
+
+	         	         git / SFTP
+   local    <=========================> server  (VM/AWS) 
+				
+1.WS2022에서 IIs 설치(Web Server)      <==Cloud OS
+  -서버관리자   ==>로컬 서버 => 관리 ==>역활(Role) - Server service(16개) , 기능(Feature) -35 개
+   ==>역활 또는 기능 기반 서치  => 다음 => 다음 =>Web Server(IIS) (선택) ==>기능추가 ==>다음 =>다음 =>설치
+
+2.방화벽 확인 (TCP 80) : wf.msc
+    netstat -na 	<=열려있는 포트 확인  
+
+    shutdown -r -t 0		<== -r : 리부팅, -t 0 : 0초 뒤에 리부팅
+
+
+3.IIS (인터넷 정보서비스) 관리자툴
+  Default Web Site <==기본으로 생성된 Web server
+
+ - 바인딩된 IP 		:      * 	<==서버에 셋팅된 모든 IP로 접근
+ - 바인딩된 Port		:     80
+ - Home Directory		:     %systemDrive%\inetpub\wwwroot	<==폴더에 홈페이지 제작파일을 업로드
+ - 기본문서 (Default Document) : default.htm, default.asp, index.htm, index.html , iistart.htm
+   
+=========================================
+
+#ubuntu, CentOS 에 Web Server 설치 (Nginx),   git 설치 , ssh (우분투에는 설치가 필요, 센토os는 설치가 되어 있다.)
+ 
+#ubuntu linux에 git 설치
+$ sudo apt update			<== apt : 인터넷의 패키지(리눅스 os에 설치되는 프로그램) 레파지토리에서 설치
+$ sudo apt install git
+$ git --version
+
+
+웹 브라우져 : Web Server에 정보를 요청하는 Client Program
+ - 구글 크롬 : 개발자 
+ - 리눅스 : 파이어폭스
+ - 맥 : 사파리
+ - 윈도우 : 엣지(HTML5), 인터넷 익스플롤러(지원종료)   <==
+ - 오페라 
+ 
+#ubuntu linux 에 nginx web server 설치(TCP 80)
+ 1. $ sudo apt update
+ 2. $ sudo apt install nginx 	<==nginx 설치
+ 3. $ sudo systemctl status nginx 	<== nginx 서비스 상태 확인
+
+ # 방화벽 오픈 (TCP 80) : ubuntu 에서 
+ 4. $ sudo ufw allow 80/tcp		<==우분투에서 방화벽 설정 (ufw : ubuntu firewall)
+ 5. $ sudo ufw status 		<== 방화벽 상태 확인
+
+
+
+ # 방화벽 오픈 (TCP 80)-센토 os에서 방화벽 설정
+ 4. $ sudo firewall-cmd --permanent --zone=public --add-port=80/tcp		<==TCP 80 퐅트 오픈
+ 5. $ sudo firewall-cmd --reload 	<== 오픈한 방화벽 설정이 적용되도록 reload
+ 6. $ sudo firewall-cmd --list-ports	<== 현재 방화벽에서 열려있는 포트를 확인
+
+  # nginx web server 설정 : nginx.conf    (  /etc/nginx/nginx.conf )
+ 6. find / -name nginx.conf	        <==nginx.conf 파일의 위치를 검색 / 
+
+ # nginx web server 활성화된 설정 파일 (/etc/nginx/sites-available/default)
+ 7. cat -n /etc/nginx/sites-available/default | more
+       - 바인딩된 IP : 서버에 ip
+       - 바인딩된 port : TCP 80
+★★★- 홈폴더 : /var/www/html	<== root /var/www/html	: 개발된 소스파일을 저장할 위치(이 페이지에 홈페이지 파일을 저장을 시킴)
+       - 기본문서 : index.html index.htm		<-== index index.html index.htm
+
+# 로그온한 계정의 홈 폴더에 
+Sample_web3 (local) ============SFTP=========>Ubuntu 
+web4 (git)      ===========git clone ==========>ubuntu
+
+# 웹 서버의 홈폴더에 복사해서 서비스 :/var/www/html
+ $ cp -r  <원본> <대상> 
+ $ cd/var/www/html
+ $ cp -r ~SFTP/web4/  .
+
+=================
+
+#Linux ====> RedHat Enterprise Linux (유로) : 기술 지원이 되는 리눅스, 
+#centos(무료) 에서 git 설치 :2021년 종료 ======>rocky linux (centos)
+https:chhanz.github.io/linux/2022/02/04/dnf-error-centos-8/		<==패키지 레파지 토리 변경
+
+#centos 8의 레파지토리(패키지가 저장된 공간)->서비스 종료료 레파지토리 주소 변경(git 설치가 안됌)
+
+ $ sudo sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-Linux-*
+ $ sudo sed -i s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-Linux-*
+
+ $ dnf repolist <==repository list 출력
+ $ cat /etc/yum.repos.d/CentOS-Linux-BaseOS.repo 	<==Base Repository 주소 변경된 내용 확인
+
+$ sudo dnf install git	<=== git 설치 (종속된(defendency) 프로그램을 찾아서 먼저 설치후 해당 프로그램 설치
+
+#centos에서 nginx 설치
+ $ sudo dnf install nginx
+
+# nginx 서비스 상태 확인 : systemctl
+ $ sudo systemctl status nginx		: 서비스 상태 확인
+ $ sudo systemctl start nginx			: 서비스를 시작해줌
+ $ sudo systemctl enable nginx		: 부팅시 nginx 서비스를 자동으로 시작	
+
+#방화벽 오픈
+ # 방화벽 오픈 (TCP 80)-센토 os에서 방화벽 설정
+ 4. $ sudo firewall-cmd --permanent --zone=public --add-port=80/tcp		<==TCP 80 퐅트 오픈
+ 5. $ sudo firewall-cmd --reload 	<== 오픈한 방화벽 설정이 적용되도록 reload
+ 6. $ sudo firewall-cmd --list-ports	<== 현재 방화벽에서 열려있는 포트를 확인
+
+
+#nginx 설정정보 확인 :  /etc/nginx/nginx.conf
+ $ cat -n/etc/nginx/nginx.conf | more
+  바인딩 ip :  *
+  바인딩 Port : 80
+  홈폴더 : /usr/share/nginx/html	<==홈페이지 파일 저장 위치
+  기본문서 : (cat -n) index.html 
+
+
+
+$ cd /usr/share/nginx
+$ sudo chmod o+w html
+$ ls -la
+
+
+======================
+
+#닷홈 무료 홈페이지: https://www.dothome.co.kr/web/free/index.php		<== 무료 웹호스팅 /
+      홈페이지를 업로드할 경로   /html
+	index.html
+
+웹브라우저 url : ngxk1210.dothome.co.kr
+	       <id>.
+
+# cafe24 : 유료 웹 호스팅 , 서버 호스팅	    <==
+  cafe24.com  :    유료  /국내에서 제일 크고, 비용도 저렴한 웹 호스팅/ 서버 호스팅
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

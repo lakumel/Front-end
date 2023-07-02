@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #toc-content {
+          display: none;
+        }
+        #toc-toggle {
+          cursor: pointer;
+          color: #2962ff;
+        }
+        #toc-toggle:hover {
+          text-decoration: underline;
+        }
+        /* 인라인 으로 출력 하기 */ 
+        ol li {
+            float:left;
+            margin : -10px 20px 0 20px; 
+
+        }
+      </style>
+
+</head>
+<body>
+    
+    목차 [<span id="toc-toggle" onclick="openCloseToc()">보이기</span>]
+    <ol id="toc-content">
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+    </ol>
+    
+    <script>
+        //ol 태그의 내용을 기본 출력시 출력되지 않도록 하고 보이기를 클릭시 출력
+        //보여졌을때는 숨기기라고 처리 , 숨기기를 클릭시 ol 내용을 숨김 처리
+
+        function openCloseToc() {
+          if(document.getElementById('toc-content').style.display === 'block') {
+            document.getElementById('toc-content').style.display = 'none';
+            document.getElementById('toc-toggle').textContent = '보이기';
+          } else {
+            document.getElementById('toc-content').style.display = 'block';
+            document.getElementById('toc-toggle').textContent = '숨기기';
+          }
+        }
+
+    </script>
+</body>
+</html>

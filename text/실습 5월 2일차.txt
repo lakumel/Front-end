@@ -1,0 +1,40 @@
+
+--문제가 있으면 구글에서 검색
+--동료한테 sos
+--chat gpt에게 도움
+-강사
+
+<실습> VMware 에서 Rocky Linux 설치
+1.고정 ip setting
+
+-host name:SVR-4D
+-ip 192.168.111.140
+-서브넷 마스크(subnet mask):255.255.255.0 /24
+-Default gateway : 192.168.111.2
+-DNS : 8.8.8.8 
+	168.126.63.1
+
+2.SSH 설치가 되었는지 실행되고 있는지 방화벽이 오픈되어 있는지 확인후 putty에서 접속
+3.git 설치, nginx 설치 
+
+ $sudo yum install git
+ $ sudo yum install nginx
+   
+4.git clone으로 웹서버 홈폴더에 site 저장후 출력
+5.SFTP를 사용해서 Local(Site) ===> nginx홈폴더에 저장후 출력
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

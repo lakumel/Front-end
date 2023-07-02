@@ -1,0 +1,38 @@
+AWS에서 인스턴스(vm) 배포 ===>웹서버
+      -Local(개발된 파일)=====>Remote(웹서버) 	: SFTP(TCP 22), git(두번째는 git는 통해 올리는 방법이 있다.)
+
+  -Windows Server 2022(IIS-웹서버) : RDP(원격관리, TCP3389)
+	-IIS 설치:TCP 80(AWS 방화벽에서 열어줘야 한다.)
+	C:\inetpub\wwwroot	<==개발된 페이지 업로드 위치
+		index.html
+	-SSH 설치:TCP 22(AWS 방화벽에서 열어줘야 한다.)
+	-git 설치
+	
+  -Linux Ubuntu(Nginx-웹서버) :기본적으로  SSH가 설치되어 있다.(TCP 22)
+	-Nginx
+		/var/www/html;		<==개발된 페이지를 업로드 위치
+
+	-git 설치
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

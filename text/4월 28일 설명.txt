@@ -1,0 +1,107 @@
+
+
+-------
+4월 28일
+-------
+#Permission(권한), ls -l
+
+drwxrwxr-x 2 ubuntu ubuntu	.......    test2
+
+d : 폴더
+- : 파일
+l : 링크(Link) , 윈도우의 바로가기 , 실제파일을 연결 시켜주는 기능
+
+ rwx	rwx	rwx   			ubuntu		ubuntu
+ 첫번째 rwx는 소유자의 권한(u)		<소유자>		<그룹>
+ 	두번째의 rwx는 그룹의 권한(g)				
+		세번째의 rwx는 기타권한(o)
+
+	r : read (읽기),    4		<==폴더, 파일의 내용을 볼 수가 있다.
+	w: write (쓰기),   2 		<==폴더, 파일을 생성 할 수 있다.
+	x: eXcute (실행), 1		<==폴더(폴더인 경우 내부로 들어갈 수 있다.),파일(파일인 경우 파일을 실행할 수 있다.)
+		windows: *.exe, *.cmd, *.bat
+
+
+#계정 정보 : /etc/passwd
+#그룹 정보 : /etc/group
+    그룹명:그룹의 패스워드:그룹의 고유 번호(GID):그룹에 포함된 계정
+    sudo	:x:		27:		ubuntu
+    sudo:x:27:ubuntu
+    
+
+
+  - 그룹은 여러계정을 그룹에 포함 시켜서, 그룹에 권한을 부여 하면 그 그룹에 포함된 계정에게 
+	권한이 모두 적용된다.
+  -권한 관리를 아주 쉽게 할 수 있다.
+
+#폴더 자체의 권한을 확인(폴더안의 내용이 아니라)
+$ ls -ld  <폴더명>
+
+#Permission(권한)을 수정 명령어 : chmod 
+  - 영문으로 수정
+	$chmod u+rwx,g+rx-w,o+r-wx  test4
+	$chmod a=rx-w test4		<==a : u(소유주), g(그룹), o(기타)
+  - 숫자로 수정
+	7 : rwx		4+2+1
+	6 : rw-		4+2+0
+	5 : r-x		4+0+1
+	4 : r--		4+0+0
+	3 : -wx		0+2+1
+	2 : -w-		0+2+0
+	1 : --x		0+0+1
+	0 : ---		0+0+0
+
+
+
+test5		dr---wxr--		->chmod 434 test5
+test6		d-w-r----x		->chmod 241 test6
+test7		drw--w--w-	->chmod 622 test7
+test8		d--x-wxr--	->chmod 134 test8
+test9		dr-x--x-wx	->chmod 513 test9
+test10		d-wxr--r-x		->chmod 345 test10 
+
+#소유주(u), 그룹(g) 을 수정하는 명령어 :chown 
+    $sudo chown root.sudo test5
+
+   - 소유주 : /etc/passwd 
+   - 그룹    : /etc/group
+
+#계정 생성 명령어 : useradd <계정명>		/etc/passwd
+      -- 계정의 패스워드가 부여되지 않으면 사용할 수 없다.
+      --passwd <계정명>
+#그룹 생성 명령어 : groupadd <그룹명>		/etc/group
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,160 @@
+
+#windows server(WS)에서 VMTools설치 :
+	-Host OS와 Guest OS(VM) 사이의 인터페이스를 부드럽게 처리
+
+#windows server 2022를 한글화:언어팩 설치
+
+========
+
+#고정 ip setting :server os는 ip가 변화되면 서비스를 못한다.
+	-주의할점:그 네트워크 환경에 맞도록 잘 셋팅해서 넣어야 한다.
+
+#리눅스(ubuntu, centos, rocky)에서 TCP/IP Setting 명령어
+  $ nmtui
+#Windows 에서 TCP/IP Setting 명령어
+  ncpa.cpl
+
+SVR-A : Ubuntu Linux   <==고정 IP Setting :nmtui 
+TCP/IP  
+ ip :192.168.111.110
+ subnet mask : 255.255.255.0
+ gate way  : 192.168.111.2
+ DNS : 8.8.8.8 <==구글의 DNS 서버
+	168.126.63.1 <==KT DNS server
+
+SVR-3B : CentOS Linux      <==고정 ip setting
+TCP/IP  
+  ip :192.168.111.120
+  subnet mask : 255.255.255.0              /24
+  gate way  : 192.168.111.2
+  DNS : 8.8.8.8 <==구글의 DNS 서버
+	168.126.63.1 <==KT DNS server
+
+
+
+SVR-3C : WS 2022      <==고정 ip setting
+TCP/IP  
+ ip :192.168.111.130
+ subnet mask : 255.255.255.0              /24
+ gate way  : 192.168.111.2
+ DNS : 8.8.8.8 <==구글의 DNS 서버
+	168.126.63.1 <==KT DNS server
+
+=======
+
+#서버를 원격에서 관리
+리눅스 
+	client(putty.exe)   <=================>server (SSH :TCP 22)
+
+
+#리눅스의 프롬프트
+ubuntu@SVR-0A:~$
+로그온한 계정명@접속한 서버(컴퓨터 이름):작업폴더$
+woosung@svr-3a:~$
+
+~ : 로그온한 계정의 홈 폴더
+$ : 일단 계정
+# : root 계정 (리눅스의 최고 관리자 계정), 기본적으로 root 계정은 잠겨져 있다.(보안상)
+
+#현재 작업하는 전체 절대경로를 출력하는 명령어
+$pwd
+
+
+#홈 폴더:그 계정에서만 사용이 되는 정보가 저장된 폴더. 즐겨찾기, 암호, ...
+ /home/계정명 
+
+
+#WS에서 원격 접속:RDP(Remote Desktop Protocol : TCP 3389), 암호화, GUI
+
+Client(원격 데스크톱 연결)	<======RDP===============>  Server(원격 접속을 허용)
+
+#데몬(daemon) : 메모리(RAM)에 부팅(작동)되는 서버 서비스== 서버, 서비스	,systemctl
+	web server, FTP Server, Mail server, DNS Server, DHCP Server, SSH Server, .........
+
+#계정을 로그아웃 하지 않고 다른 계정으로 이동
+
+su - <이동할 계정명>	:이동할 계정의 쉘을 작동을 시킴( - ), 그 계정의 홈 폴더로 이동됨
+su - root	     <==root 계정으로 이동	,      일반계정에서 root계정으로 이동시 root 계정의 암호
+
+su <이동할 계정명>    :     자신의 쉘을 사용하고 다른 계정으로 이동, 폴더가 이동 되지 않음 
+su root	
+
+#절대경로(/) vs 상대 경로( / 가 붙지 않음, 현재 폴더가 기준) 
+
+#쉘(shell):명령어 해석기 (/bin/bash  ,  /bin/sh,  /bin/csh,  /bin/tcsh,  /bin/zsh)
+	- /bin/bash <== 리눅스의 기본 쉘, history, alias, .....많은 기능들이 부여되어 있음
+	-/bin/sh	  <==Unix(1969 , 본쉘), 기능이 별로 없는 쉘
+	-/bin/csh	  <==C언어에 가까운 쉘
+	-/bin/tcsh	  <==Solasis Unix의 기본쉘
+	-/bin/zsh   <==MAC에서 사용하는 기본쉘
+
+#파일의 내용을 출력:cat
+	-n이라는건 넘버를 뜻한다.
+#화면 단위로 끊어서 출력:more
+#파이프(|):명령어와 명령어를 연결
+*참고:리눅스는 확장자가 필요없다.
+$ cat -n/etc/passwd|more
+
+#/etc/passwd	:리눅스에서 생성된 모든 계정 정보를 담은 파일
+ root : 0
+	시스템에서 사용하는 계정
+centos:1000
+
+
+#폴더 이동 명령어
+$cd<이동할 폴더명>
+ . :현재 폴더
+ .. : 상위폴더
+
+/ : 루트, 리눅스의 최상위 디렉토리
+
+#폴더 내의 내용을 보는 명령어:ls
+#폴더를 생성하는 명령어:mkdir <생성할 폴더명>
+#폴더를 생성하면서 하위 폴더까지 한꺼번에 생성 : mkdir -p aa/bb/cc/dd  ee/ff/gg/hh/ii
+
+#폴더 삭제 명령어 : rmdir<삭제할 폴더명>	<==폴더안에 내용이 없어야 삭제됨
+#폴더 삭제 명령어 rm -rf<삭제할 폴더명>	<==폴더안에 내용이 있을때 강제로 삭제시킴, ,<==주의해서 사용해야 한다.
+										(중요폴더를 날릴 수 있기 때문)
+
+#원격 접속 관리 : 관리해야 할 서버가 많은 경우 매번 ip를 넣어서 접속하면 번거롭다.
+ mstsc /v:192.168.111.130
+
+#Ubuntu Linux:설치시에 root 계정이 비활성화 되어 있다. (root 계정의 암호를 부여하지 않아서 비활성화 된 상태)
+  -/etc/passwd	<==Linux의 모든 계정의 정보가 들어가 있다.
+  -/etc/shadow	<==계정의 password 정보가 암호화 되어서 저장되어 있다.
+
+#grep:필터 (해당내용만 필터해서 출력) : 
+cat -n/etc/passwd|grep root
+
+#계정의 암호 부여하기
+$sudo passwd <암호를 부여할 계정명>
+$sudo passwd root 
+
+#현재 로그온 한 계정의 쉘을 출력
+$ echo $SHELL	:SHELL 변수에 저장된 값을 출력 하라
+
+
+/bin  :모든 계정이 사용하는 프로그램이 저장된 폴더
+/sbin :관리자 계정에서만 사용되는 프로그램이 저장된 폴더, sudo 
+
+#계정 생성하기
+$ sudo useradd userA	<==userA 계정을 생성
+$ sudo passwd userA	<==userA 계정의 암호를 부여
+
+#서버에 접속한 모든 계정을 출력: who
+ tty2     :터미널, 로컬에서 로그온한 계정
+pts/2:원격에서 접속한 계정
+
+#컴퓨터 관리 : 계정을 관리(pro, enterprise), 하드 디스크도 관리, 
+compmgmt.msc
+
+#빈파일을 생성하는 명령어 : touch
+$touch a.txt b.txt c.txt
+
+#폴더안의 내용을 자세히 출력 :폴더,파일, 권한(permission), 누가 생성(계정),그룹, 용량, 생성날짜
+$ls -l
+
+#폴더나 파일 이름 앞에 . : 숨김 폴더, 숨김 파일
+
+$ls -a	<=숨김 폴더, 파일 출력
+
